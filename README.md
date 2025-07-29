@@ -25,3 +25,33 @@ Please use your personal email ID to log in to third-party websites.
 
 Note: "Client information is deemed confidential, so use generic client information instead. For example, ‘Retail Giant,’ ‘Pharma Company,’ ‘Global Bank, etc."
 
+
+
+Task Name: Mobile-Friendly - Create a Prompt
+
+Prompt I Used:
+
+“Give me 5 cool and unique product names for a new kind of smartphone. This phone is for Gen Z users, uses AI to personalize everything, is made from eco-friendly materials, and works smoothly with smart home devices. Avoid boring or overused tech words. Each name should have a short reason behind it.”
+
+Output I Got (Using ChatGPT):
+
+1. NeuraOne – Based on “Neural” + “One”, shows smart, AI-powered features.
+
+
+2. VerdiX – Comes from “Verdant” (green) and “X” for future tech, shows eco-focus.
+
+
+3. Syncell – Mix of “Sync” and “Cell”, means smooth connection and mobile.
+
+
+4. Glidr – Sounds like “glide”, represents a smooth and simple user experience.
+
+
+5. Zyntra – A stylish, futuristic name with no direct meaning, but sounds trendy.
+
+
+
+What I Learned:
+
+This task helped me understand how to write better AI prompts. I realized that being clear and specific gives better results. At first, I wrote a simple prompt, but the names were too basic. After editing and giving more details, the AI gave more creative and focused results. This showed me how small prompt changes make a big difference in the output.
+
