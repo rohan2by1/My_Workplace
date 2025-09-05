@@ -55,3 +55,7 @@ What I Learned:
 
 This task helped me understand how to write better AI prompts. I realized that being clear and specific gives better results. At first, I wrote a simple prompt, but the names were too basic. After editing and giving more details, the AI gave more creative and focused results. This showed me how small prompt changes make a big difference in the output.
 
+
+9X2X1Y4X3E
+https://relianceretail.com/JioMart/?jiocpn=90e5d52ad8d91be49f1edfdd5c2197cb
+
