@@ -1,4 +1,4 @@
-
+employee.referral@genpact.com
 Please submit your task by typing it into the text box provided (Word limit within 150-500 words) and then click "Submit" to proceed for peer reviews.
 
 Please ensure the submission reflects you individual learnings and kindly adhere to Genpact's policies on Plagiarism, submitting the task in your own words(No Copying-pasting from other sources).
