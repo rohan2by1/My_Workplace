@@ -59,3 +59,74 @@ This task helped me understand how to write better AI prompts. I realized that b
 9X2X1Y4X3E
 https://relianceretail.com/JioMart/?jiocpn=90e5d52ad8d91be49f1edfdd5c2197cb
 
+
+
+
+
+
+Technical Account Specialist
+India & the Philippines (Remote)
+ 
+
+Technical Account Specialist
+
+About the Role
+We are seeking a Technical Account Specialist to act as the bridge between our customers and internal teams, including Customer Success, Sales, Support, and Engineering. This role combines client-facing support with a strong focus on CS Operations—managing data, analytics, reporting, and internal tooling—to ensure smooth onboarding, adoption, and account success.
+
+Key Responsibilities
+
+Client-Facing Support:
+
+Partner with CSMs and Account Executives to understand customer needs and technical requirements
+
+Provide guidance on integrations with APIs, webhooks, and internal systems
+
+Troubleshoot and resolve technical issues impacting adoption or renewals
+
+CS Operations & Analytics:
+
+Build and maintain dashboards and reports on customer health, adoption, usage trends, churn forecasts, and other key metrics
+
+Analyze data to identify patterns, provide actionable insights, and support decision-making for CSMs and leadership
+
+Own or co-own CS tools (e.g., Gainsight, Totango, ChurnZero), CRM usage (Salesforce, HubSpot), integrations, automations, and data hygiene
+
+Recommend and implement process improvements to optimize workflows across Customer Success, Sales, and Support
+
+Renewals & Expansion Support:
+
+Partner with CSMs on renewals and expansion opportunities, providing technical guidance and operational support
+
+Participate in Executive Business Reviews or regular account check-ins to drive customer value
+
+Technical Escalation & Collaboration:
+
+Serve as an escalation point for complex technical issues
+
+Collaborate with Support, Product, and Engineering to resolve high-priority incidents
+
+Document solutions, workarounds, and best practices in the Knowledge Base
+
+What You’ll Bring
+
+Required:
+
+Experience in Technical Account Management, Customer Success Operations, Solutions Engineering, or Implementation for B2B SaaS
+
+Strong experience with CS tools, CRM platforms, dashboards, and reporting (e.g., Gainsight, Totango, Salesforce, Metabase, Looker)
+
+Skilled at data analysis, reporting, and generating actionable insights
+
+Understanding of APIs, webhooks, and common data formats (JSON, CSV, XML)
+
+Excellent written and verbal communication, capable of explaining complex concepts to technical and non-technical stakeholders
+
+Strong problem-solving mindset and operational focus
+
+Nice-to-Have:
+
+Experience in logistics, supply chain, or SaaS operations
+
+Familiarity with SQL or scripting (Python/JS) for dashboards, reporting, or data validation
+
+Experience with automation and integration tools (Zapier, Workato, etc.)
