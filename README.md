@@ -1,3 +1,4 @@
+HXL6 RJE1
 https://20.193.251.143/#/kasm
 20.193.134.238
 OHR	Name	Wave	Outside Locker Number	Floor
