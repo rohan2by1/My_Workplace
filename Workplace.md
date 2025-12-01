@@ -1,3 +1,33 @@
+
+Kasm UI Login Credentials
+
+------------------------------------
+  username: admin@kasm.local
+  password: SnZ4mewWHCqPC
+------------------------------------
+  username: user@kasm.local
+  password: KwW3TOsMebUiX
+------------------------------------
+
+Kasm Database Credentials
+------------------------------------
+  username: kasmapp
+  password: H7sTkVX6EChykppBtvg2
+------------------------------------
+
+Kasm Manager Token
+------------------------------------
+  password: sVUTYa8kioZ2BRQTColZ
+------------------------------------
+
+Service Registration Token
+------------------------------------
+  password: bzz2dFuE550UTlzdzDBy
+------------------------------------
+
+
+
+
 Great — here are Chrome-specific fixes to stop Kasm audio from muting when the tab is switched. Follow them in order (Fix 1 is the most important).
 
 
