@@ -1,4 +1,4 @@
-
+https://20.244.87.95/#/kasm
 window.open(location.href, "_blank", "width=480,height=360,alwaysOnTop=yes");
 
 
