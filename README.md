@@ -1,6 +1,6 @@
 https://20.244.87.95/#/kasm
 window.open(location.href, "_blank", "width=480,height=360,alwaysOnTop=yes");
-
+https://kasm.beinghired.tech/#/dashboard
 
 E1RR 3ZP6
 https://20.193.251.143/#/kasm
