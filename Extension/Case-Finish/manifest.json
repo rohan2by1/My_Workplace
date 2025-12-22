@@ -1,1 +1,33 @@
 
+{
+  "manifest_version": 3,
+  "name": "Paragon Auto Click",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://paragon-eu.amazon.com/*",
+    "https://paragon-na.amazon.com/*",
+    "https://*.amazon.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://paragon-eu.amazon.com/*",
+        "https://paragon-na.amazon.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
