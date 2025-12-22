@@ -1,0 +1,423 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Settings</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <style>
+    /* Section styling */
+    .settings-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .settings-section h2 {
+      margin: 0 0 16px 0;
+      font-size: 14px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .settings-section h2 .icon {
+      font-size: 18px;
+    }
+    
+    .settings-section p.description {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin: 0 0 16px 0;
+    }
+    
+    /* Date inputs */
+    input[type="datetime-local"] {
+      width: 190px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+    }
+    
+    /* Case type list */
+    .case-type-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 350px;
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+    
+    .case-type-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: all 0.2s;
+    }
+    
+    .case-type-item:hover {
+      background: rgba(0, 0, 0, 0.5);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+    
+    .case-type-item.dragging {
+      opacity: 0.5;
+      border-color: var(--primary);
+    }
+    
+    .case-type-item .drag-handle {
+      cursor: grab;
+      color: var(--text-muted);
+      font-size: 16px;
+      user-select: none;
+    }
+    
+    .case-type-item .drag-handle:active {
+      cursor: grabbing;
+    }
+    
+    .case-type-item .index {
+      color: var(--text-muted);
+      font-size: 11px;
+      min-width: 24px;
+    }
+    
+    .case-type-item .name {
+      flex: 1;
+      font-size: 13px;
+      color: var(--text-main);
+    }
+    
+    .case-type-item .name input {
+      width: 100%;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-main);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+    
+    .case-type-item .name input:focus {
+      background: rgba(0, 0, 0, 0.5);
+      border-color: var(--primary);
+      outline: none;
+    }
+    
+    .case-type-item .actions {
+      display: flex;
+      gap: 6px;
+    }
+    
+    .case-type-item .btn-icon {
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      font-size: 12px;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+    
+    .case-type-item:hover .btn-icon {
+      opacity: 1;
+    }
+    
+    /* Add type input */
+    .add-type-form {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    
+    .add-type-form input {
+      flex: 1;
+    }
+    
+    /* Export section */
+    .export-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    
+    .export-card {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    
+    .export-card:hover {
+      background: rgba(0, 0, 0, 0.5);
+      border-color: var(--primary);
+    }
+    
+    .export-card .icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    
+    .export-card .title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+    
+    .export-card .desc {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    
+    /* Quick range buttons */
+    .quick-ranges {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    
+    .quick-btn {
+      padding: 6px 12px;
+      font-size: 11px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .quick-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+    }
+    
+    .quick-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    
+    /* Danger zone */
+    .danger-zone {
+      border-color: rgba(239, 68, 68, 0.3);
+      background: rgba(239, 68, 68, 0.05);
+    }
+    
+    .danger-zone h2 {
+      color: var(--danger);
+    }
+    
+    .danger-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    
+    .danger-action {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      border-radius: var(--radius);
+      flex: 1;
+      min-width: 200px;
+    }
+    
+    .danger-action .info {
+      flex: 1;
+    }
+    
+    .danger-action .title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+    
+    .danger-action .desc {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    
+    /* Stats summary */
+    .stats-summary {
+      display: flex;
+      gap: 20px;
+      padding: 12px 16px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: var(--radius);
+      margin-bottom: 16px;
+    }
+    
+    .stats-summary .stat {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .stats-summary .stat-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    
+    .stats-summary .stat-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    
+    /* Import/Export settings */
+    .backup-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    
+    #importFile {
+      display: none;
+    }
+    
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 30px;
+      color: var(--text-muted);
+    }
+    
+    .empty-state .icon {
+      font-size: 36px;
+      margin-bottom: 10px;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Case Tracker</h1>
+    <nav>
+      <a href="queued.html">Queued</a>
+      <a href="history.html">History</a>
+      <a href="performance.html">Performance</a>
+      <a class="active" href="settings.html">Settings</a>
+    </nav>
+  </header>
+  
+  <div class="container">
+    
+    <!-- Case Types Section -->
+    <div class="settings-section">
+      <h2><span class="icon">📋</span> Case Types</h2>
+      <p class="description">Manage case types that appear in the dropdown. Drag to reorder.</p>
+      
+      <div class="add-type-form">
+        <input id="typeName" placeholder="Enter new case type..." autocomplete="off">
+        <button id="addType" class="btn btn-primary">+ Add Type</button>
+      </div>
+      
+      <div id="caseTypeList" class="case-type-list">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+    
+    <!-- Data Export Section -->
+    <div class="settings-section">
+      <h2><span class="icon">📤</span> Data Export</h2>
+      <p class="description">Export your data to CSV files. Select a date range or export all.</p>
+      
+      <div id="statsSummary" class="stats-summary">
+        <!-- Populated by JS -->
+      </div>
+      
+      <div class="toolbar" style="margin-bottom: 16px;">
+        <div class="quick-ranges">
+          <button class="quick-btn" data-range="today">Today</button>
+          <button class="quick-btn" data-range="yesterday">Yesterday</button>
+          <button class="quick-btn" data-range="week">This Week</button>
+          <button class="quick-btn" data-range="month">This Month</button>
+          <button class="quick-btn active" data-range="all">All Time</button>
+        </div>
+      </div>
+      
+      <div class="toolbar">
+        <input type="datetime-local" id="exportStart" step="1" title="Start Date">
+        <span class="muted">to</span>
+        <input type="datetime-local" id="exportEnd" step="1" title="End Date">
+      </div>
+      
+      <div class="export-grid">
+        <div class="export-card" id="exportQueue">
+          <div class="icon">📥</div>
+          <div class="title">Export Queue</div>
+          <div class="desc">Download pending cases as CSV</div>
+        </div>
+        <div class="export-card" id="exportHistory">
+          <div class="icon">📊</div>
+          <div class="title">Export History</div>
+          <div class="desc">Download completed cases as CSV</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Backup & Restore Section -->
+    <div class="settings-section">
+      <h2><span class="icon">💾</span> Backup & Restore</h2>
+      <p class="description">Backup all your settings and data, or restore from a previous backup.</p>
+      
+      <div class="backup-buttons">
+        <button id="backupAll" class="btn btn-secondary">⬇️ Download Backup</button>
+        <button id="restoreBackup" class="btn btn-secondary">⬆️ Restore Backup</button>
+        <input type="file" id="importFile" accept=".json">
+      </div>
+    </div>
+    
+    <!-- Danger Zone -->
+    <div class="settings-section danger-zone">
+      <h2><span class="icon">⚠️</span> Danger Zone</h2>
+      <p class="description">These actions are irreversible. Please be careful.</p>
+      
+      <div class="danger-actions">
+        <div class="danger-action">
+          <div class="info">
+            <div class="title">Clear Queue</div>
+            <div class="desc">Remove all pending cases</div>
+          </div>
+          <button id="clearQueue" class="btn btn-danger">Clear</button>
+        </div>
+        
+        <div class="danger-action">
+          <div class="info">
+            <div class="title">Clear History</div>
+            <div class="desc">Remove all completed cases</div>
+          </div>
+          <button id="clearHistory" class="btn btn-danger">Clear</button>
+        </div>
+        
+        <div class="danger-action">
+          <div class="info">
+            <div class="title">Reset Everything</div>
+            <div class="desc">Delete all data and settings</div>
+          </div>
+          <button id="resetAll" class="btn btn-danger">Reset</button>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <script src="../utils.js" type="module"></script>
+  <script src="settings.js" type="module"></script>
+</body>
+</html>

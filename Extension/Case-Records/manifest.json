@@ -1,0 +1,52 @@
+{
+  "name": "Case Tracker",
+  "description": "Track case links, history, queue, performance",
+  "version": "1.1",
+  "manifest_version": 3,
+  "author": "rohan2by1",
+  "homepage_url": "https://www.github.com/rohan2by1",
+
+  "permissions": [
+    "tabs",
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "https://thejobcompany.co.in/*",
+    "https://thejobcompany.in/*"
+  ],
+
+  "chrome_url_overrides": {
+    "newtab": "pages/queued.html"
+  },
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "icons": {
+    "16": "assets/icon.png",
+    "48": "assets/icon.png",
+    "128": "assets/icon.png"
+  },
+
+  "action": {
+    "default_title": "Case Tracker",
+    "default_icon": "assets/icon.png"
+  },
+
+  "options_page": "pages/settings.html",
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://thejobcompany.co.in/frontend/job_details*",
+        "https://thejobcompany.in/frontend/job_details*"
+      ],
+      "js": ["content/capture.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
