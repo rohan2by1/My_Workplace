@@ -1,1 +1,69 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      width: 320px;
+      padding: 15px;
+      font-family: Arial, sans-serif;
+    }
+    .input-group {
+      margin: 10px 0;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #FF9900;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #e88a00;
+    }
+    #stopBtn {
+      background-color: #dc3545;
+    }
+    #status {
+      margin-top: 10px;
+      padding: 10px;
+      background: #f0f0f0;
+      border-radius: 5px;
+      font-size: 13px;
+    }
+    .active {
+      background: #d4edda !important;
+      border: 1px solid #28a745;
+    }
+  </style>
+</head>
+<body>
+  <h3>🔄 Paragon Auto Click</h3>
+  
+  <div class="input-group">
+    <label>Timer before clicking Complete (seconds):</label>
+    <input type="number" id="timer" value="5" min="1">
+  </div>
+  
+  <button id="startBtn">▶ Start Task</button>
+  <button id="stopBtn">⏹ Stop</button>
+  
+  <div id="status">Status: Idle</div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
