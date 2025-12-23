@@ -1,3 +1,41 @@
+1- Chand se Parda Ki jiye
+
+2,180
+
+2 - Dheere Dheere se meri zindagi me
+
+3- Sochenge tumhe pyaar
+
+4 - Ek sanam chahiye aashique ke liye
+
+5- Mera dil bhi kitna paagal hai
+
+6- Tumhe apna banane ki kasam
+
+7- Tum dil ki dhadkan me
+
+8- Dekhne walon ne kya kya nahi dekha hoga
+
+9- Tune Zindagi me aake
+
+10- Teri Umeed tera Intezaar banke
+
+11 - Aaye ho meri zindagi me tum bahaar
+
+12 - Mujhse mohabbat ka izhaar
+
+13 - Aksar is Duniye me
+
+14 - Jeeta jiske liye
+
+15 - Mera chaand mujhe aaya hai nazar
+
+16- Aankh hai bhari bhari
+
+17 - Tu meri zindagi hai
+
+
+
 https://20.244.87.95/#/kasm
 window.open(location.href, "_blank", "width=480,height=360,alwaysOnTop=yes");
 https://kasm.beinghired.tech/#/dashboard
