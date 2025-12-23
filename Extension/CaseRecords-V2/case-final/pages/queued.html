@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Queued Cases</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <style>
+    /* Page-specific overflow fix */
+    body {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+    .container {
+      overflow: visible;
+      padding-bottom: 100px; /* Space for dropdowns at bottom */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Case Tracker</h1>
+    <nav>
+      <a class="active" href="queued.html">Queued</a>
+      <a href="history.html">History</a>
+      <a href="performance.html">Performance</a>
+      <a href="settings.html">Settings</a>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="toolbar">
+      <button id="refresh" class="btn btn-primary">↻ Refresh</button>
+    </div>
+    <table id="table">
+      <thead>
+        <tr>
+          <th style="width: 40px;">#</th>
+          <th>URL</th>
+          <th style="width: 140px;">Opened</th>
+          <th style="width: 200px;">Case Type</th>
+          <th style="width: 180px;">Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+     <!-- Footer Credit -->
+  <div class="footer-credit">
+    <a href="https://github.com/rohan2by1" target="_blank" title="View on GitHub">
+      <img src="https://i.vimeocdn.com/portrait/122803638_288x288?subrect=669%2C977%2C1460%2C1768&r=cover&sig=6e0848a2191df4af27767a1041882f4eed99faa5bb5e219cc7f40fb33c2c1b66&v=1&region=us" alt="rohan2by1">
+      <p>by rohan2by1</p>
+    </a>
+  </div>
+  <!-- No datalist needed anymore -->
+  <script src="../utils.js" type="module"></script>
+  <script src="queued.js" type="module"></script>
+</body>
+</html>

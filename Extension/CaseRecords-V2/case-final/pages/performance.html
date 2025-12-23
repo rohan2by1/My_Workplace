@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Performance</title>
+    <link rel="stylesheet" href="../styles/main.css" />
+    <style>
+      /* Date range inputs */
+      input[type="datetime-local"] {
+        width: 190px;
+        font-family: "Inter", sans-serif;
+        cursor: pointer;
+      }
+
+      /* Quick range buttons */
+      .quick-ranges {
+        display: flex;
+        gap: 6px;
+        margin-left: 10px;
+        padding-left: 10px;
+        border-left: 1px solid var(--border);
+      }
+
+      .quick-btn {
+        padding: 6px 10px;
+        font-size: 11px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        color: var(--text-muted);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .quick-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text-main);
+      }
+
+      .quick-btn.active {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+
+      /* Filter by case type */
+      .filter-section {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid var(--border);
+      }
+
+      .filter-wrapper {
+        position: relative;
+        width: 250px;
+      }
+
+      .filter-input {
+        width: 100%;
+        box-sizing: border-box;
+        padding-right: 28px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23a3a3a3' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='M21 21l-4.35-4.35'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+      }
+
+      .filter-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        max-height: 250px;
+        overflow-y: auto;
+        background: rgb(28, 28, 28);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: var(--radius);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        z-index: 9999;
+        margin-top: 4px;
+        display: none;
+      }
+
+      .filter-dropdown.show {
+        display: block;
+      }
+
+      .filter-item {
+        padding: 10px 14px;
+        cursor: pointer;
+        font-size: 13px;
+        color: var(--text-main);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        transition: background 0.1s ease;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .filter-item:last-child {
+        border-bottom: none;
+      }
+
+      .filter-item:hover,
+      .filter-item.highlighted {
+        background: var(--primary);
+        color: white;
+      }
+
+      .filter-item .count {
+        font-size: 11px;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2px 8px;
+        border-radius: 10px;
+        color: var(--text-muted);
+      }
+
+      .filter-item:hover .count {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+      }
+
+      .filter-item.clear-option {
+        color: var(--warning);
+        font-weight: 500;
+      }
+
+      .filter-item.clear-option:hover {
+        background: var(--warning);
+        color: #000;
+      }
+
+      .filter-item mark {
+        background: rgba(251, 202, 31, 0.5);
+        color: inherit;
+        padding: 1px 3px;
+        border-radius: 3px;
+      }
+
+      .active-filter {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(59, 130, 246, 0.2);
+        border: 1px solid var(--primary);
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        color: var(--primary);
+      }
+
+      .active-filter .clear-btn {
+        background: none;
+        border: none;
+        color: var(--primary);
+        cursor: pointer;
+        font-size: 14px;
+        padding: 0;
+        line-height: 1;
+      }
+
+      .active-filter .clear-btn:hover {
+        color: var(--danger);
+      }
+
+      /* Enhanced stats grid */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .stat-card {
+        background: var(--bg-surface);
+        backdrop-filter: blur(var(--backdrop-blur));
+        padding: 16px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+
+      .stat-card .stat-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-muted);
+        margin-bottom: 6px;
+      }
+
+      .stat-card .stat-value {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      .stat-card .stat-sub {
+        font-size: 11px;
+        color: var(--text-muted);
+        margin-top: 6px;
+      }
+
+      .stat-card .stat-sub.positive {
+        color: var(--success);
+      }
+
+      .stat-card .stat-sub.negative {
+        color: var(--danger);
+      }
+
+      /* Charts layout */
+      .charts-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      @media (max-width: 900px) {
+        .charts-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .chart-card {
+        background: var(--bg-surface);
+        backdrop-filter: blur(var(--backdrop-blur));
+        padding: 16px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        height: 320px;
+      }
+
+      .chart-card h2 {
+        margin: 0 0 12px 0;
+        font-size: 13px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+
+      .chart-wrapper {
+        height: calc(100% - 30px);
+        position: relative;
+      }
+
+      /* *** FIX: Detailed Breakdown dynamic height *** */
+      /* Detailed Breakdown - Auto height */
+      #detailedChartCard {
+        height: auto !important;
+        min-height: 200px;
+        max-height: none;
+      }
+
+      #detailedChartWrapper {
+        height: auto !important;
+        min-height: 200px;
+      }
+
+      #chartDetailed {
+        width: 100% !important;
+      }
+
+      /* Hourly chart */
+      #hourlyChartCard {
+        height: 280px;
+      }
+
+      /* Range display */
+      .range-display {
+        font-size: 12px;
+        color: var(--text-muted);
+        margin-left: auto;
+      }
+
+      .range-display strong {
+        color: var(--text-main);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Case Tracker</h1>
+      <nav>
+        <a href="queued.html">Queued</a>
+        <a href="history.html">History</a>
+        <a class="active" href="performance.html">Performance</a>
+        <a href="settings.html">Settings</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <!-- Date Range Toolbar -->
+      <div class="toolbar">
+        <input
+          type="datetime-local"
+          id="startRange"
+          step="1"
+          title="Start Date/Time"
+        />
+        <span class="muted">to</span>
+        <input
+          type="datetime-local"
+          id="endRange"
+          step="1"
+          title="End Date/Time"
+        />
+        <button id="applyRange" class="btn btn-primary">Apply</button>
+
+        <div class="quick-ranges">
+          <button class="quick-btn" data-range="today">Today</button>
+          <button class="quick-btn" data-range="yesterday">Yesterday</button>
+          <button class="quick-btn" data-range="week">This Week</button>
+          <button class="quick-btn" data-range="month">This Month</button>
+          <button class="quick-btn active" data-range="all">All Time</button>
+        </div>
+
+        <span id="rangeDisplay" class="range-display"></span>
+      </div>
+
+      <!-- Case Type Filter -->
+      <div class="filter-section">
+        <span class="muted">Filter by type:</span>
+        <div class="filter-wrapper">
+          <input
+            id="typeFilter"
+            class="filter-input"
+            placeholder="All case types..."
+            autocomplete="off"
+          />
+          <div id="typeFilterDropdown" class="filter-dropdown"></div>
+        </div>
+        <span id="activeTypeFilter"></span>
+      </div>
+
+      <!-- Stats Cards -->
+      <div id="stats"></div>
+
+      <!-- Charts -->
+      <div class="charts-row">
+        <div class="chart-card">
+          <h2>Distribution by Type</h2>
+          <div class="chart-wrapper">
+            <canvas id="chartByType"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <h2>Completion Trend</h2>
+          <div class="chart-wrapper">
+            <canvas id="chartTrend"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- *** FIX: Detailed Breakdown with dynamic height *** -->
+      <div
+        class="chart-card"
+        id="detailedChartCard"
+        style="margin-bottom: 16px; height: auto"
+      >
+        <h2>Detailed Breakdown</h2>
+        <div
+          class="chart-wrapper"
+          id="detailedChartWrapper"
+          style="height: auto"
+        >
+          <canvas id="chartDetailed"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-card" id="hourlyChartCard">
+        <h2>Hourly Activity</h2>
+        <div class="chart-wrapper">
+          <canvas id="chartHourly"></canvas>
+        </div>
+      </div>
+    </div>
+   <!-- Footer Credit -->
+  <div class="footer-credit">
+    <a href="https://github.com/rohan2by1" target="_blank" title="View on GitHub">
+      <img src="https://i.vimeocdn.com/portrait/122803638_288x288?subrect=669%2C977%2C1460%2C1768&r=cover&sig=6e0848a2191df4af27767a1041882f4eed99faa5bb5e219cc7f40fb33c2c1b66&v=1&region=us" alt="rohan2by1">
+      <p>by rohan2by1</p>
+    </a>
+  </div>
+    <script src="chart.js"></script>
+    <script src="../utils.js" type="module"></script>
+    <script src="performance.js" type="module"></script>
+  </body>
+</html>

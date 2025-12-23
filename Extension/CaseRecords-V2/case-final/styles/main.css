@@ -1,0 +1,510 @@
+/* Import modern font 'Inter' */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* Modern Dark Palette */
+  --bg-color: #313131;
+  --bg-surface: rgba(40, 40, 40, 0.7); 
+  --backdrop-blur: 10px;
+  --bg-hover: rgba(255, 255, 255, 0.1);
+  
+  /* Brand Colors */
+  --primary: #3b82f6;      /* Blue */
+  --success: #10b981;      /* Green */
+  --warning: #fbca1f;      /* Yellow */
+  --danger: #f63838;       /* Red */
+  --neutral: #64748b;      /* Slate/Grey */
+  
+  --text-main: #f8fafc;
+  --text-muted: #a3a3a3;
+  --border: rgba(255, 255, 255, 0.1);
+  --radius: 8px; 
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.4;
+  font-size: 13px;
+  min-height: 100vh; 
+  background-color: var(--bg-color);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0);
+  background-size: 30px 30px;
+  background-position: -5px -5px;
+}
+
+.container {
+  max-width: auto;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+/* --- Header & Nav --- */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: rgba(35, 35, 35, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+h1 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+nav {
+  display: flex;
+  gap: 4px;
+}
+
+nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+}
+
+nav a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+nav a.active {
+  color: #fff;
+  background: var(--primary);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+}
+
+/* --- Tables --- */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 16px;
+  background: var(--bg-surface);
+  backdrop-filter: blur(var(--backdrop-blur));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  /* Note: No overflow:hidden here to allow dropdowns to show */
+}
+
+th {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle; 
+}
+
+td {
+  padding: 6px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle; 
+}
+
+th {
+  background: rgba(20, 20, 20, 0.5);
+  color: var(--text-muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: var(--bg-hover);
+}
+
+/* --- Forms & Inputs --- */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+/* Base input style */
+input {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: 1px solid var(--border);
+  padding: 7px 12px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  border-color: var(--primary);
+  background: rgba(0, 0, 0, 0.837);
+}
+
+/* --- Custom Input Style (for non-dropdown inputs) --- */
+.custom-input {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.custom-input:focus {
+  border-color: var(--primary);
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+  outline: none;
+}
+
+/* --- Buttons --- */
+.btn {
+  font-family: inherit;
+  padding: 0.6em 1em;
+  font-weight: 700;
+  font-size: 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 0.4em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  filter: brightness(1.1);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  filter: grayscale(1);
+}
+
+.btn-primary { background: var(--warning); color: #000; border-color: rgba(0,0,0,0.1); }
+.btn-info { background: var(--primary); color: white; }
+.btn-success { background: var(--success); color: white; }
+.btn-danger { background: var(--danger); color: white; }
+.btn-secondary { background: var(--neutral); color: white; }
+
+.btn-icon {
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+td.actions { white-space: nowrap; }
+td.actions .btn { margin-right: 6px; }
+td.actions .btn:last-child { margin-right: 0; }
+
+.muted { color: var(--text-muted); font-size: 12px; }
+
+/* --- Stats & Charts --- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--bg-surface);
+  backdrop-filter: blur(var(--backdrop-blur));
+  padding: 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label { 
+  color: var(--text-muted); 
+  font-size: 11px; 
+  text-transform: uppercase; 
+  font-weight: 600; 
+  margin-bottom: 6px; 
+}
+
+.stat-value { 
+  color: #fff; 
+  font-size: 26px; 
+  font-weight: 700; 
+}
+
+.charts-stack { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 24px; 
+}
+
+.chart-card {
+  flex: 1;
+  background: var(--bg-surface);
+  backdrop-filter: blur(var(--backdrop-blur));
+  padding: 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+}
+
+.chart-card h2 { 
+  margin-top: 0; 
+  margin-bottom: 12px; 
+  font-size: 13px; 
+  color: var(--text-muted); 
+  flex-shrink: 0; 
+}
+
+.chart-wrapper { 
+  flex-grow: 1; 
+  position: relative; 
+  width: 100%; 
+  min-height: 0; 
+}
+
+/* --- Scrollbar Styles --- */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-color); }
+::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; border: 2px solid var(--bg-color); }
+::-webkit-scrollbar-thumb:hover { background: #777; }
+
+
+/* ============================================
+   DROPDOWN STYLES (Queued Page Only)
+   These styles only affect elements with 
+   dropdown-specific classes
+   ============================================ */
+
+/* Cell that contains dropdown - allows overflow */
+.dropdown-cell {
+  position: relative;
+  overflow: visible !important;
+}
+
+/* Dropdown wrapper container */
+.dropdown-wrapper {
+  position: relative;
+  width: 100%;
+  min-width: 180px;
+}
+
+/* Dropdown input field */
+.dropdown-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 28px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  padding-right: 28px;
+  font-size: 13px;
+  transition: all 0.2s ease;
+  /* Dropdown arrow icon */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a3a3a3' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.dropdown-input:focus {
+  border-color: var(--primary);
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+  outline: none;
+  /* Keep the arrow icon on focus */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+/* Dropdown list container */
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  min-width: 220px;
+  max-height: 300px;
+  overflow-y: auto;
+  background: rgb(28, 28, 28);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  margin-top: 4px;
+}
+
+/* Individual dropdown item */
+.dropdown-item {
+  padding: 11px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-main);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.1s ease;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.dropdown-item:hover,
+.dropdown-item.highlighted {
+  background: var(--primary);
+  color: white;
+}
+
+/* No results message */
+.dropdown-item.no-result {
+  color: var(--text-muted);
+  font-style: italic;
+  cursor: default;
+  padding: 14px;
+  text-align: center;
+}
+
+.dropdown-item.no-result:hover {
+  background: transparent;
+  color: var(--text-muted);
+}
+
+/* Highlighted search match */
+.dropdown-item mark {
+  background: rgba(251, 202, 31, 0.5);
+  color: inherit;
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+/* Dropdown scrollbar */
+.dropdown-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dropdown-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.dropdown-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.dropdown-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================
+   SETTINGS PAGE SPECIFIC
+   ============================================ */
+
+/* Date input styling for settings page */
+input[type="datetime-local"] {
+  width: 200px;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+}
+
+/* ============================================
+   HISTORY PAGE SPECIFIC
+   ============================================ */
+
+/* If history page has specific needs, add here */
+
+/* ============================================
+   PERFORMANCE PAGE SPECIFIC
+   ============================================ */
+
+/* If performance page has specific needs, add here */
+
+
+/* --- Footer Credit --- */
+.footer-credit {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 50;
+}
+
+.footer-credit a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-right: none;
+  border-bottom: none;
+  padding: 5px 8px;
+  border-radius: 8px 0 0 0;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.footer-credit a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--primary);
+}
+
+.footer-credit img {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.footer-credit p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.footer-credit a:hover p {
+  color: var(--text-main);
+}
